@@ -20,10 +20,9 @@ float posToGLSL[4*MAX_NUM_LIGHTS];
 
 float SceneElement::lightStrength[3*MAX_NUM_LIGHTS] =
 	{
-		0.95, 0.95, 0.95, //0.65 0.65 0.45
-		0.95, 0.95, 0.95,
-		0.55, 0.55, 0.6 //0.25 0.25 0.3
-
+		0.55, 0.55, 0.45, //0.65 0.65 0.45
+		0.55, 0.55, 0.45,
+		0.35, 0.35, 0.4 //0.25 0.25 0.3
 	};
 
 float SceneElement::globalAmbient[] = { 0.2, 0.2, 0.2 };
