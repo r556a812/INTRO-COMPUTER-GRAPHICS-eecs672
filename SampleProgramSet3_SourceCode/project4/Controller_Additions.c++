@@ -38,7 +38,7 @@ void Controller_Additions::handleDisplay()
   drawObjects();
 
   glfwSwapBuffers(theWindow);
-  
+
 }
 
 void Controller_Additions::setShader(ShaderIF* s)

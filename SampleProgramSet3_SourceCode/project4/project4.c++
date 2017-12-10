@@ -26,7 +26,7 @@ void createLogo(Controller& c, ShaderIF* sIF)
 	double k[3]; k[0] = 0.9; k[1] = 1.0; k[2] = 0.4; //lime green
 	double kg[3]; kg[0] = 0.5; kg[1] = 0.5; kg[2] = 0.5; //dark gray
 
-	const char* mat = "images/s.tga";
+	const char* mat = "images/alex.tga";
 
 	c.addModel(new Disk(sIF, 25, 14, 0.1, 5.0, kg, 25, mat, 10));
 	c.addModel(new Pole(sIF, 23.5, 15.0, 0.2, 8.0, 2.0, 0.01, k));

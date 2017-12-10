@@ -31,7 +31,7 @@ void Disk::defineInitialGeometry()
 {
   typedef float vec3[3];
 	vec3* coords = new vec3[N_POINTS_AROUND_SLICE+2];
-  vec2* texCoords = new vec2[N_POINTS_AROUND_SLICE+1];
+  vec2* texCoords = new vec2[N_POINTS_AROUND_SLICE+2];
 	double theta = 0.0;
 	double dTheta = 2.0*M_PI/N_POINTS_AROUND_SLICE;
 
@@ -39,6 +39,9 @@ void Disk::defineInitialGeometry()
   coords[0][0] = x1;
   coords[0][1] = y1;
   coords[0][2] = z1;
+
+  texCoords[0][0] = 1;
+  texCoords[0][1] = 0.5;
 
   //Fill the array with points
 	for (int i=1 ; i<=N_POINTS_AROUND_SLICE+1 ; i++)
@@ -49,10 +52,10 @@ void Disk::defineInitialGeometry()
     coords[i][1] = y1 + r1*dy;
     coords[i][2] = z1;
 
-    /*texCoords[i-1][0] = (1+dx)/2;
-    texCoords[i-1][1] = (1+dy)/2;*/
-    float tc = (i/(float)(2*M_PI));
-    texCoords[i-1][0] = tc/d; texCoords[i-1][1] = z1/d;
+    //float tc = (i/(float)(2*M_PI));
+    float tx = dx*0.5 + 0.5;
+    float ty = dy*0.5 + 0.5;
+    texCoords[i][0] = tx; texCoords[i][1] = ty;
 
 		theta += dTheta;
 	}
@@ -74,7 +77,7 @@ void Disk::defineInitialGeometry()
   glDisableVertexAttribArray(shaderIF->pvaLoc("mcNormal"));
 
   glBindBuffer(GL_ARRAY_BUFFER, vbo[1]);
-	glBufferData(GL_ARRAY_BUFFER, (N_POINTS_AROUND_SLICE+1)*2*sizeof(float), texCoords, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, (N_POINTS_AROUND_SLICE+2)*2*sizeof(float), texCoords, GL_STATIC_DRAW);
 	glVertexAttribPointer(shaderIF->pvaLoc("texCoords"), 2, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(shaderIF->pvaLoc("texCoords"));
 
